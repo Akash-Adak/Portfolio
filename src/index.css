@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&family=Syne:wght@500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+  --surface: rgba(255, 255, 255, 0.72);
+  --surface-soft: rgba(255, 255, 255, 0.86);
+  --text: #0f172a;
+  --muted: #475569;
+  --border: rgba(15, 23, 42, 0.1);
+  --accent: #0f766e;
+  --accent-2: #ca8a04;
+  --accent-soft: rgba(15, 118, 110, 0.1);
+  --orb-a: rgba(14, 165, 233, 0.2);
+  --orb-b: rgba(245, 158, 11, 0.16);
+  --orb-c: rgba(244, 63, 94, 0.12);
+  --shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
+  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text);
+  background: var(--bg);
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --bg: linear-gradient(180deg, #020617 0%, #0b1120 100%);
+  --surface: rgba(15, 23, 42, 0.72);
+  --surface-soft: rgba(15, 23, 42, 0.88);
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --border: rgba(148, 163, 184, 0.16);
+  --accent: #38bdf8;
+  --accent-2: #f59e0b;
+  --accent-soft: rgba(56, 189, 248, 0.12);
+  --orb-a: rgba(34, 211, 238, 0.24);
+  --orb-b: rgba(251, 191, 36, 0.18);
+  --orb-c: rgba(244, 63, 94, 0.12);
+  --shadow: 0 28px 90px rgba(2, 6, 23, 0.35);
+  color-scheme: dark;
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Syne', 'Trebuchet MS', sans-serif;
+  }
+
+  .font-mono {
+    font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 7.2rem;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  transition:
+    background 240ms ease,
+    color 240ms ease;
+}
+
+.noise-layer {
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(circle at center, black 30%, transparent 100%);
+}
+
+.section-tag {
+  display: inline-flex;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.8rem;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  background: var(--surface-soft);
+}
