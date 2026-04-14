@@ -11,12 +11,14 @@ import {
   Layers3,
   Mail,
   MapPin,
+  Menu,
   Moon,
   Phone,
   Rocket,
   Server,
   ShieldCheck,
   Sun,
+  X,
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import heroImg from './assets/hero.png'
@@ -149,11 +151,24 @@ const getInitialTheme = () => {
 
 function App() {
   const [theme, setTheme] = useState(getInitialTheme)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
     window.localStorage.setItem('portfolio-theme', theme)
   }, [theme])
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setMenuOpen(false)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const isDark = theme === 'dark'
 
@@ -167,7 +182,7 @@ function App() {
       </div>
 
       <header className="mx-auto w-full max-w-6xl px-5 pt-5 sm:px-8 lg:px-12">
-        <div className="surface flex flex-wrap items-center justify-between gap-4 rounded-full px-4 py-3 sm:px-5">
+        <div className="surface header-shell rounded-[1.5rem] px-4 py-4 sm:rounded-full sm:px-5">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--accent)] text-sm font-bold text-white shadow-lg shadow-black/20">
               AA
@@ -187,15 +202,57 @@ function App() {
             ))}
           </nav>
 
-          <button
-            type="button"
-            onClick={() => setTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'))}
-            className="theme-toggle"
-          >
-            {isDark ? <Sun className="inline-icon" aria-hidden="true" /> : <Moon className="inline-icon" aria-hidden="true" />}
-            {isDark ? 'Light theme' : 'Dark theme'}
-          </button>
+          <div className="ml-auto flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'))}
+              className="theme-toggle"
+              aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+            >
+              {isDark ? (
+                <Sun className="inline-icon" aria-hidden="true" />
+              ) : (
+                <Moon className="inline-icon" aria-hidden="true" />
+              )}
+              <span className="hidden sm:inline">{isDark ? 'Light theme' : 'Dark theme'}</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setMenuOpen((current) => !current)}
+              className="menu-toggle md:hidden"
+              aria-expanded={menuOpen}
+              aria-label="Toggle navigation menu"
+            >
+              {menuOpen ? <X className="inline-icon" aria-hidden="true" /> : <Menu className="inline-icon" aria-hidden="true" />}
+            </button>
+          </div>
         </div>
+
+        <motion.nav
+          initial={false}
+          animate={menuOpen ? 'open' : 'closed'}
+          variants={{
+            open: { opacity: 1, y: 0, height: 'auto', pointerEvents: 'auto' },
+            closed: { opacity: 0, y: -8, height: 0, pointerEvents: 'none' },
+          }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
+          className="mobile-nav surface mt-3 overflow-hidden rounded-[1.5rem] md:hidden"
+        >
+          <div className="flex flex-col gap-2 p-3">
+            {navItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="mobile-nav-link"
+                onClick={() => setMenuOpen(false)}
+              >
+                <item.icon className="inline-icon" aria-hidden="true" />
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </motion.nav>
       </header>
 
       <main className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 pb-12 pt-6 sm:px-8 lg:px-12">
