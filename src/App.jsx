@@ -21,7 +21,7 @@ import {
   X,
 } from 'lucide-react'
 import { motion } from 'framer-motion'
-import heroImg from './assets/hero.png'
+import heroImg from './assets/my-photo.jpeg'
 import './App.css'
 
 const navItems = [
@@ -306,19 +306,9 @@ function App() {
               <div className="grid gap-5">
                 <div className="relative overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface-soft)] p-4">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.18),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(251,191,36,0.14),transparent_35%)]" />
-                  <div className="relative grid gap-4 sm:grid-cols-[0.95fr_1.05fr] sm:items-center">
-                      <img src={heroImg} alt="Portfolio portrait visual" className="portrait-image" />
-                 
-                    <div>
-                      <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-[var(--muted)]">
-                        Featured profile
-                      </p>
-                      <h2 className="mt-2 font-display text-2xl text-[var(--text)] sm:text-3xl">
-                        Enterprise Backend Engineering
-                      </h2>
-                      <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
-                        Specialized in secure auth, event pipelines, observability, and stable production delivery.
-                      </p>
+                  <div className="relative flex justify-center lg:justify-end">
+                    <div className="portrait-frame w-full max-w-[340px] lg:max-w-[380px]">
+                      <img src={heroImg} alt="Akash Adak portrait" className="portrait-image" loading="eager" />
                     </div>
                   </div>
                 </div>
