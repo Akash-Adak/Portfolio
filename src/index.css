@@ -4,19 +4,19 @@
 @tailwind utilities;
 
 :root {
-  --bg: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
-  --surface: rgba(255, 255, 255, 0.72);
-  --surface-soft: rgba(255, 255, 255, 0.86);
+  --bg: radial-gradient(circle at top left, rgba(15, 118, 110, 0.11), transparent 26%), radial-gradient(circle at top right, rgba(202, 138, 4, 0.13), transparent 22%), radial-gradient(circle at 50% 100%, rgba(14, 165, 233, 0.08), transparent 30%), linear-gradient(180deg, #fffdfa 0%, #edf3ff 52%, #edf7f1 100%);
+  --surface: rgba(255, 255, 255, 0.8);
+  --surface-soft: rgba(255, 255, 255, 0.96);
   --text: #0f172a;
-  --muted: #475569;
-  --border: rgba(15, 23, 42, 0.1);
+  --muted: #4c5b70;
+  --border: rgba(15, 23, 42, 0.09);
   --accent: #0f766e;
-  --accent-2: #ca8a04;
+  --accent-2: #b45309;
   --accent-soft: rgba(15, 118, 110, 0.1);
   --orb-a: rgba(14, 165, 233, 0.2);
-  --orb-b: rgba(245, 158, 11, 0.16);
+  --orb-b: rgba(245, 158, 11, 0.18);
   --orb-c: rgba(244, 63, 94, 0.12);
-  --shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
+  --shadow: 0 26px 80px rgba(15, 23, 42, 0.09);
   font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
@@ -27,8 +27,8 @@
 }
 
 :root[data-theme='dark'] {
-  --bg: linear-gradient(180deg, #020617 0%, #0b1120 100%);
-  --surface: rgba(15, 23, 42, 0.72);
+  --bg: radial-gradient(circle at top left, rgba(56, 189, 248, 0.14), transparent 28%), radial-gradient(circle at top right, rgba(245, 158, 11, 0.13), transparent 24%), radial-gradient(circle at 50% 100%, rgba(15, 118, 110, 0.1), transparent 30%), linear-gradient(180deg, #020617 0%, #0b1120 100%);
+  --surface: rgba(15, 23, 42, 0.7);
   --surface-soft: rgba(15, 23, 42, 0.88);
   --text: #e2e8f0;
   --muted: #94a3b8;

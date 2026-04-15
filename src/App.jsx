@@ -16,7 +16,6 @@ import {
   Phone,
   Rocket,
   Server,
-  ShieldCheck,
   Sun,
   X,
 } from 'lucide-react'
@@ -112,21 +111,6 @@ const metrics = [
   { label: 'Delivery', value: 'Docker / K8s', icon: Rocket },
 ]
 
-const profileHighlights = [
-  {
-    text: 'Secure authentication with JWT RS256, RBAC, Redis, and BCrypt.',
-    icon: ShieldCheck,
-  },
-  {
-    text: 'Event-driven architecture using Kafka and Kafka Streams.',
-    icon: Server,
-  },
-  {
-    text: 'Cloud-native deployment with Kubernetes, Prometheus, and Grafana.',
-    icon: Activity,
-  },
-]
-
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
   visible: (delay = 0) => ({
@@ -182,7 +166,7 @@ function App() {
       </div>
 
       <header className="mx-auto w-full max-w-6xl px-5 pt-5 sm:px-8 lg:px-12">
-        <div className="surface header-shell rounded-[1.5rem] px-4 py-4 sm:rounded-full sm:px-5">
+        <div className="surface header-shell md:flex-nowrap rounded-[1.5rem] px-4 py-4 sm:rounded-full sm:px-5">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--accent)] text-sm font-bold text-white shadow-lg shadow-black/20">
               AA
@@ -193,7 +177,7 @@ function App() {
             </div>
           </div>
 
-          <nav className="hidden items-center gap-1 md:flex">
+          <nav className="hidden items-center gap-1 whitespace-nowrap md:flex md:flex-nowrap">
             {navItems.map((item) => (
               <a key={item.label} href={item.href} className="nav-link">
                 <item.icon className="inline-icon" aria-hidden="true" />
@@ -206,7 +190,7 @@ function App() {
             <button
               type="button"
               onClick={() => setTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'))}
-              className="theme-toggle"
+              className="theme-toggle shrink-0"
               aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
             >
               {isDark ? (
@@ -220,7 +204,7 @@ function App() {
             <button
               type="button"
               onClick={() => setMenuOpen((current) => !current)}
-              className="menu-toggle md:hidden"
+              className="menu-toggle inline-flex shrink-0 md:hidden"
               aria-expanded={menuOpen}
               aria-label="Toggle navigation menu"
             >
@@ -266,7 +250,7 @@ function App() {
             Portfolio / 2026
           </p>
 
-          <div className="mt-4 grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-center">
+          <div className="mt-4 grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
             <div className="space-y-6">
               <div className="inline-flex max-w-full rounded-full border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] text-[var(--muted)]">
                 Backend engineer / system builder / product thinker
@@ -303,39 +287,61 @@ function App() {
             </div>
 
             <div className="surface-strong overflow-hidden rounded-[2rem] p-5 sm:p-6">
-              <div className="grid gap-5">
-                <div className="relative overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface-soft)] p-4">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.18),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(251,191,36,0.14),transparent_35%)]" />
-                  <div className="relative flex justify-center lg:justify-end">
-                    <div className="portrait-frame w-full max-w-[340px] lg:max-w-[380px]">
+              <div className="grid gap-4">
+                <div className="relative overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface-soft)] p-4 sm:p-5">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.18),transparent_42%),radial-gradient(circle_at_bottom_left,rgba(251,191,36,0.16),transparent_34%)]" />
+                  <div className="relative flex justify-center">
+                    <div className="portrait-frame w-full max-w-[420px] lg:max-w-[500px]">
                       <img src={heroImg} alt="Akash Adak portrait" className="portrait-image" loading="eager" />
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
 
-                <div className="grid gap-3 md:grid-cols-3">
-                  {profileHighlights.map((item) => (
-                    <div key={item.text} className="mini-surface rounded-2xl p-3 text-sm text-[var(--muted)]">
-                      <item.icon className="inline-icon highlight-icon" aria-hidden="true" />
-                      {item.text}
-                    </div>
-                  ))}
-                </div>
+          <div className="mt-6 grid gap-4 lg:grid-cols-[1.02fr_0.98fr]">
+            <div className="hero-summary-card rounded-[1.75rem] border border-[var(--border)] p-4 sm:p-5">
+              <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-[var(--muted)]">
+                Featured profile
+              </p>
+              <h2 className="mt-3 font-display text-2xl text-[var(--text)] sm:text-3xl">
+                Enterprise Backend Engineering
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
+                Secure auth, event pipelines, observability, and stable production delivery.
+              </p>
 
-                <div className="grid gap-3 rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface)] p-4 text-sm text-[var(--text)]">
-                  <p>
-                    <Mail className="inline-icon" aria-hidden="true" />
-                    <span className="font-mono text-[var(--accent)]">Email:</span> akashadak00023@gmail.com
-                  </p>
-                  <p>
-                    <Phone className="inline-icon" aria-hidden="true" />
-                    <span className="font-mono text-[var(--accent)]">Phone:</span> +91 86530 26878
-                  </p>
-                  <p>
-                    <MapPin className="inline-icon" aria-hidden="true" />
-                    <span className="font-mono text-[var(--accent)]">Location:</span> Tamluk, West Bengal
-                  </p>
-                </div>
+              <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
+                <li className="flex gap-2">
+                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
+                  Security-first architecture with JWT, RBAC, Redis, and BCrypt.
+                </li>
+                <li className="flex gap-2">
+                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
+                  Event-driven services using Kafka and Kafka Streams.
+                </li>
+                <li className="flex gap-2">
+                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
+                  Cloud-native delivery with Docker, Kubernetes, and observability tooling.
+                </li>
+              </ul>
+            </div>
+
+            <div className="grid gap-4">
+              <div className="grid gap-3 rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface)] p-4 text-sm text-[var(--text)]">
+                <p>
+                  <Mail className="inline-icon" aria-hidden="true" />
+                  <span className="font-mono text-[var(--accent)]">Email:</span> akashadak00023@gmail.com
+                </p>
+                <p>
+                  <Phone className="inline-icon" aria-hidden="true" />
+                  <span className="font-mono text-[var(--accent)]">Phone:</span> +91 86530 26878
+                </p>
+                <p>
+                  <MapPin className="inline-icon" aria-hidden="true" />
+                  <span className="font-mono text-[var(--accent)]">Location:</span> Tamluk, West Bengal
+                </p>
               </div>
             </div>
           </div>
