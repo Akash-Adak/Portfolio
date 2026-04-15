@@ -112,11 +112,11 @@ const metrics = [
 ]
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 1, y: 0 },
   visible: (delay = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: 'easeOut', delay },
+    transition: { duration: 0.25, ease: 'easeOut', delay },
   }),
 }
 
@@ -166,50 +166,52 @@ function App() {
       </div>
 
       <header className="mx-auto w-full max-w-6xl px-5 pt-5 sm:px-8 lg:px-12">
-        <div className="surface header-shell md:flex-nowrap rounded-[1.5rem] px-4 py-4 sm:rounded-full sm:px-5">
-          <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--accent)] text-sm font-bold text-white shadow-lg shadow-black/20">
-              AA
+        <div className="surface rounded-[1.5rem] px-4 py-4 sm:rounded-full sm:px-5">
+          <div className="flex items-center justify-between gap-3 md:gap-4">
+            <div className="flex min-w-0 items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--accent)] text-sm font-bold text-white shadow-lg shadow-black/20">
+                AA
+              </div>
+              <div className="min-w-0">
+                <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-[var(--muted)]">Portfolio</p>
+                <p className="truncate font-display text-[0.95rem] text-[var(--text)] sm:text-base">Akash Adak</p>
+              </div>
             </div>
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-[var(--muted)]">Portfolio</p>
-              <p className="font-display text-sm text-[var(--text)] sm:text-base">Akash Adak</p>
+
+            <nav className="hidden items-center gap-1 whitespace-nowrap md:flex md:flex-nowrap">
+              {navItems.map((item) => (
+                <a key={item.label} href={item.href} className="nav-link">
+                  <item.icon className="inline-icon" aria-hidden="true" />
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+
+            <div className="header-actions flex items-center gap-2 md:ml-auto">
+              <button
+                type="button"
+                onClick={() => setTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'))}
+                className="theme-toggle shrink-0"
+                aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+              >
+                {isDark ? (
+                  <Sun className="inline-icon" aria-hidden="true" />
+                ) : (
+                  <Moon className="inline-icon" aria-hidden="true" />
+                )}
+                <span className="hidden sm:inline">{isDark ? 'Light theme' : 'Dark theme'}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setMenuOpen((current) => !current)}
+                className="menu-toggle inline-flex shrink-0 md:hidden"
+                aria-expanded={menuOpen}
+                aria-label="Toggle navigation menu"
+              >
+                {menuOpen ? <X className="inline-icon" aria-hidden="true" /> : <Menu className="inline-icon" aria-hidden="true" />}
+              </button>
             </div>
-          </div>
-
-          <nav className="hidden items-center gap-1 whitespace-nowrap md:flex md:flex-nowrap">
-            {navItems.map((item) => (
-              <a key={item.label} href={item.href} className="nav-link">
-                <item.icon className="inline-icon" aria-hidden="true" />
-                {item.label}
-              </a>
-            ))}
-          </nav>
-
-          <div className="ml-auto flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => setTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'))}
-              className="theme-toggle shrink-0"
-              aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
-            >
-              {isDark ? (
-                <Sun className="inline-icon" aria-hidden="true" />
-              ) : (
-                <Moon className="inline-icon" aria-hidden="true" />
-              )}
-              <span className="hidden sm:inline">{isDark ? 'Light theme' : 'Dark theme'}</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setMenuOpen((current) => !current)}
-              className="menu-toggle inline-flex shrink-0 md:hidden"
-              aria-expanded={menuOpen}
-              aria-label="Toggle navigation menu"
-            >
-              {menuOpen ? <X className="inline-icon" aria-hidden="true" /> : <Menu className="inline-icon" aria-hidden="true" />}
-            </button>
           </div>
         </div>
 
@@ -250,7 +252,7 @@ function App() {
             Portfolio / 2026
           </p>
 
-          <div className="mt-4 grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+          <div className="mt-4 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div className="space-y-6">
               <div className="inline-flex max-w-full rounded-full border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] text-[var(--muted)]">
                 Backend engineer / system builder / product thinker
@@ -266,7 +268,7 @@ function App() {
                 confidence.
               </p>
 
-              <div className="flex flex-wrap gap-3">
+              <div className="hero-actions flex flex-wrap gap-3">
                 <a href="#projects" className="button-primary">
                   Explore projects
                 </a>
@@ -286,12 +288,12 @@ function App() {
               </div>
             </div>
 
-            <div className="surface-strong overflow-hidden rounded-[2rem] p-5 sm:p-6">
+            <div className="surface-strong overflow-hidden rounded-[2rem] p-4 sm:p-5">
               <div className="grid gap-4">
-                <div className="relative overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface-soft)] p-4 sm:p-5">
+                <div className="relative overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface-soft)] p-3.5 sm:p-4">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.18),transparent_42%),radial-gradient(circle_at_bottom_left,rgba(251,191,36,0.16),transparent_34%)]" />
                   <div className="relative flex justify-center">
-                    <div className="portrait-frame w-full max-w-[420px] lg:max-w-[500px]">
+                    <div className="portrait-frame w-full max-w-[360px] lg:max-w-[400px]">
                       <img src={heroImg} alt="Akash Adak portrait" className="portrait-image" loading="eager" />
                     </div>
                   </div>
@@ -329,16 +331,16 @@ function App() {
             </div>
 
             <div className="grid gap-4">
-              <div className="grid gap-3 rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface)] p-4 text-sm text-[var(--text)]">
-                <p>
+              <div className="grid gap-4 rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface)] p-5 text-sm text-[var(--text)] sm:p-6">
+                <p className="flex items-start gap-3 leading-relaxed">
                   <Mail className="inline-icon" aria-hidden="true" />
                   <span className="font-mono text-[var(--accent)]">Email:</span> akashadak00023@gmail.com
                 </p>
-                <p>
+                <p className="flex items-start gap-3 leading-relaxed">
                   <Phone className="inline-icon" aria-hidden="true" />
-                  <span className="font-mono text-[var(--accent)]">Phone:</span> +91 86530 26878
+                  <span className="font-mono text-[var(--accent)]">Phone:</span> +91 8653026878
                 </p>
-                <p>
+                <p className="flex items-start gap-3 leading-relaxed">
                   <MapPin className="inline-icon" aria-hidden="true" />
                   <span className="font-mono text-[var(--accent)]">Location:</span> Tamluk, West Bengal
                 </p>
