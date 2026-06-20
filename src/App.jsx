@@ -989,17 +989,7 @@ function Contact({ dark }) {
           ))}
         </motion.div>
 
-        {/* Location / phone */}
-        <motion.div {...fadeUp(0.4)} style={{ marginTop: 24, display: "flex", justifyContent: "center", gap: 24, flexWrap: "wrap" }}>
-          {[`📍 ${DATA.location}`, `📞 ${DATA.phone}`].map((t) => (
-            <span key={t} style={{
-              padding: "8px 18px", borderRadius: 99, fontSize: 13,
-              background: dark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.05)",
-              border: `1px solid ${dark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}`,
-              color: dark ? "#94a3b8" : "#64748b",
-            }}>{t}</span>
-          ))}
-        </motion.div>
+       
       </div>
     </section>
   );
