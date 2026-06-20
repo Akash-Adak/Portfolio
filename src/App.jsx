@@ -6,7 +6,7 @@ import {
   useInView,
   useSpring,
 } from "framer-motion";
-
+import avatar from "./assets/my-photo.jpeg";
 // ─────────────────────────────────────────────
 //  THEME
 // ─────────────────────────────────────────────
@@ -38,7 +38,7 @@ const DATA = {
   github: "https://github.com/Akash-Adak",
   linkedin: "https://linkedin.com/in/akash-adak-b9334b2b9",
   leetcode: "https://leetcode.com/u/akash0029",
-  avatar: "src/assets/my-photo.jpeg",
+  avatar: avatar,
 
   stats: [
     { label: "LeetCode Solved", value: "900+", icon: "⚡", color: "#F59E0B", bg: "rgba(245,158,11,0.12)" },
